@@ -1,14 +1,25 @@
 # YouTube Members Only Hider
 
+<img src="icons/android-chrome-192x192.png" alt="YouTube Members Only Hider Icon" width="64" height="64" align="left" style="margin-right: 10px;">
+
 A Firefox browser extension that automatically hides YouTube videos marked as "Members only" from your feed, search results, and channel pages.
+
+<br clear="left"/>
 
 ## Screenshots
 
-### Before (with Members-only videos visible)
-![Before - Members-only videos visible](images/before.png)
-
-### After (Members-only videos hidden)
-![After - Members-only videos hidden](images/after.png)
+<table>
+<tr>
+<td width="50%">
+<h3>Before (with Members-only videos visible)</h3>
+<img src="images/before.png" alt="Before - Members-only videos visible" width="100%">
+</td>
+<td width="50%">
+<h3>After (Members-only videos hidden)</h3>
+<img src="images/after.png" alt="After - Members-only videos hidden" width="100%">
+</td>
+</tr>
+</table>
 
 ## Features
 
