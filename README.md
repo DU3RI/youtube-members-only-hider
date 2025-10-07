@@ -5,10 +5,10 @@ A Firefox browser extension that automatically hides YouTube videos marked as "M
 ## Screenshots
 
 ### Before (with Members-only videos visible)
-![Before - Members-only videos visible](Images/before.png)
+![Before - Members-only videos visible](images/before.png)
 
 ### After (Members-only videos hidden)
-![After - Members-only videos hidden](Images/after.png)
+![After - Members-only videos hidden](images/after.png)
 
 ## Features
 
@@ -37,18 +37,23 @@ A Firefox browser extension that automatically hides YouTube videos marked as "M
 
 ### Manual Installation (Release Package)
 
-1. Download the latest release `.xpi` file from the [Releases](../../releases) page
-2. **Option A - Drag & Drop (Easiest):**
-   - Drag the `.xpi` file onto your Firefox window
-   - Click "Add" when prompted
-   
-3. **Option B - Through Firefox:**
-   - Open Firefox and navigate to `about:debugging`
-   - Click "This Firefox" in the sidebar
-   - Click "Load Temporary Add-on"
-   - Select the downloaded `.xpi` file
+**⚠️ Important:** Unsigned extensions cannot be permanently installed in regular Firefox. Use one of these methods:
 
-**Note:** Method A installs permanently, Method B installs temporarily until Firefox restart.
+**Option A - Temporary Installation (Recommended):**
+1. Download the latest release `.xpi` file from the [Releases](../../releases) page
+2. Open Firefox and navigate to `about:debugging#/runtime/this-firefox`
+3. Click "Load Temporary Add-on"
+4. Select the downloaded `.xpi` file
+5. Extension works until Firefox restart
+
+**Option B - Firefox Developer/Nightly (Permanent):**
+1. Install [Firefox Developer Edition](https://www.mozilla.org/firefox/developer/) or [Firefox Nightly](https://nightly.mozilla.org/)
+2. Set `xpinstall.signatures.required` to `false` in `about:config`
+3. Drag the `.xpi` file to Firefox window
+4. Click "Add" when prompted - Extension installs permanently
+
+**Option C - Official Store (Coming Soon):**
+- Extension will be submitted to Firefox Add-ons store for one-click permanent installation
 
 ### Development Setup
 
