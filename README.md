@@ -71,11 +71,12 @@ You will need to repeat this process each time you restart Firefox, as temporary
 **Important: Unsigned extensions cannot be permanently installed in regular Firefox. Use one of these methods:**
 
 **Option A - Temporary Installation (Recommended):**
-1. Download the latest release `.xpi` file from the [Releases](../../releases) page
-2. Open Firefox and navigate to `about:debugging#/runtime/this-firefox`
-3. Click "Load Temporary Add-on"
-4. Select the downloaded `.xpi` file
-5. Extension works until Firefox restart
+1. Download the latest release `...xpi` zip file from the [Releases](../../releases) page
+2. Extract the zip file
+3. Open Firefox and navigate to `about:debugging#/runtime/this-firefox`
+4. Click "Load Temporary Add-on"
+5. Select the downloaded `.xpi` file
+6. Extension works until Firefox restart
 
 **Option B - Firefox Developer/Nightly (Permanent):**
 1. Install [Firefox Developer Edition](https://www.mozilla.org/firefox/developer/) or [Firefox Nightly](https://nightly.mozilla.org/)
