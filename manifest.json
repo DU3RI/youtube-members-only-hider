@@ -3,7 +3,7 @@
   "name": "YouTube Members Only Hider",
   "version": "1.0.0",
   "description": "Hide YouTube videos marked as 'Members only' from your feed and channel pages",
-  "author": "Your Name",
+  "author": "DU3RI",
   
   "permissions": [
     "*://www.youtube.com/*",
