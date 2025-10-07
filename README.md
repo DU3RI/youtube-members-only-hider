@@ -37,11 +37,18 @@ A Firefox browser extension that automatically hides YouTube videos marked as "M
 
 ### Manual Installation (Release Package)
 
-1. Download the latest release from the [Releases](../../releases) page
-2. Open Firefox and navigate to `about:debugging`
-3. Click "This Firefox" in the sidebar
-4. Click "Load Temporary Add-on"
-5. Select the downloaded `.xpi` file
+1. Download the latest release `.xpi` file from the [Releases](../../releases) page
+2. **Option A - Drag & Drop (Easiest):**
+   - Drag the `.xpi` file onto your Firefox window
+   - Click "Add" when prompted
+   
+3. **Option B - Through Firefox:**
+   - Open Firefox and navigate to `about:debugging`
+   - Click "This Firefox" in the sidebar
+   - Click "Load Temporary Add-on"
+   - Select the downloaded `.xpi` file
+
+**Note:** Method A installs permanently, Method B installs temporarily until Firefox restart.
 
 ### Development Setup
 
