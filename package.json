@@ -1,0 +1,28 @@
+{
+  "name": "youtube-members-only-hider",
+  "version": "1.0.0",
+  "description": "Firefox extension to hide YouTube videos marked as 'Members only'",
+  "scripts": {
+    "build": "web-ext build --source-dir . --artifacts-dir dist",
+    "start": "web-ext run --source-dir .",
+    "lint": "web-ext lint --source-dir .",
+    "sign": "web-ext sign --source-dir . --artifacts-dir dist",
+    "package": "npm run lint && npm run build",
+    "dev": "web-ext run --source-dir . --reload"
+  },
+  "devDependencies": {
+    "web-ext": "^8.10.0"
+  },
+  "keywords": [
+    "firefox",
+    "extension",
+    "youtube", 
+    "membership",
+    "filter",
+    "privacy",
+    "browser-extension",
+    "content-filter"
+  ],
+  "author": "DU3RI",
+  "license": "MIT"
+}
