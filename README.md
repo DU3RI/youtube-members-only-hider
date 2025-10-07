@@ -5,10 +5,10 @@ A Firefox browser extension that automatically hides YouTube videos marked as "M
 ## Screenshots
 
 ### Before (with Members-only videos visible)
-![Before - Members-only videos visible](Images/before.png)
+![Before - Members-only videos visible](images/before.png)
 
 ### After (Members-only videos hidden)
-![After - Members-only videos hidden](Images/after.png)
+![After - Members-only videos hidden](images/after.png)
 
 ## Features
 
