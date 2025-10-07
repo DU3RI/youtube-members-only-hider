@@ -6,6 +6,24 @@ A Firefox browser extension that automatically hides YouTube videos marked as "M
 
 <br clear="left"/>
 
+---
+
+- [Screenshots](#screenshots)
+- [Features](#features)
+- [Installation](#installation)
+   - [Official Store (Coming Soon)](#official-store-coming-soon)
+   - [Manual Installation (Easy Method)](#manual-installation-easy-method)
+   - [Manual Installation (Release Package)](#manual-installation-release-package)
+   - [Development Setup](#development-setup)
+- [Development](#development)
+- [How It Works](#how-it-works)
+- [Debug Functions](#debug-functions)
+- [File Structure](#file-structure)
+- [Contributing](#contributing)
+- [License](#license)
+
+---
+
 ## Screenshots
 
 <table>
