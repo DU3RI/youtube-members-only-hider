@@ -2,6 +2,14 @@
 
 A Firefox browser extension that automatically hides YouTube videos marked as "Members only" from your feed, search results, and channel pages.
 
+## Screenshots
+
+### Before (with Members-only videos visible)
+![Before - Members-only videos visible](Images/before.png)
+
+### After (Members-only videos hidden)
+![After - Members-only videos hidden](Images/after.png)
+
 ## Features
 
 - 🚫 Hides "Members only" videos from all YouTube pages
@@ -10,10 +18,9 @@ A Firefox browser extension that automatically hides YouTube videos marked as "M
 - 🎯 Targets various YouTube layouts (home feed, channel videos, search results)
 - 🛠️ Debug functions available in browser console
 
-## Installation
 
-### From Firefox Add-ons Store
-*Coming soon - extension will be available on the Firefox Add-ons store*
+
+## Installation
 
 ### Manual Installation (Easy Method)
 
@@ -23,7 +30,7 @@ A Firefox browser extension that automatically hides YouTube videos marked as "M
    - Extract the ZIP file to a folder on your computer
 
 2. **Install in Firefox:**
-   - Open Firefox and navigate to `about:debugging`
+   - Open Firefox and navigate to `about:debugging#/runtime/this-firefox`
    - Click "This Firefox" in the sidebar
    - Click "Load Temporary Add-on"
    - Navigate to the extracted folder and select the `manifest.json` file
