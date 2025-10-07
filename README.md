@@ -18,8 +18,6 @@ A Firefox browser extension that automatically hides YouTube videos marked as "M
 - [Development](#development)
 - [How It Works](#how-it-works)
 - [Debug Functions](#debug-functions)
-- [File Structure](#file-structure)
-- [Contributing](#contributing)
 - [License](#license)
 
 ---
@@ -156,25 +154,6 @@ youtubeMembersOnlyHider.getHiddenCount();
 // Temporarily show all hidden videos (for debugging)
 youtubeMembersOnlyHider.showHiddenVideos();
 ```
-
-## File Structure
-
-```
-├── manifest.json          # Extension manifest
-├── content-script.js      # Main functionality  
-├── background.js          # Extension lifecycle
-├── icons/                 # Extension icons
-├── package.json          # Development dependencies
-└── README.md             # Documentation
-```
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly on different YouTube pages
-5. Submit a pull request
 
 ## License
 
