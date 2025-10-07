@@ -22,6 +22,9 @@ A Firefox browser extension that automatically hides YouTube videos marked as "M
 
 ## Installation
 
+**Official Store (Coming Soon):**
+- Extension is submitted to Firefox Add-ons store for one-click permanent installation
+
 ### Manual Installation (Easy Method)
 
 1. **Download the source code:**
@@ -52,8 +55,7 @@ A Firefox browser extension that automatically hides YouTube videos marked as "M
 3. Drag the `.xpi` file to Firefox window
 4. Click "Add" when prompted - Extension installs permanently
 
-**Option C - Official Store (Coming Soon):**
-- Extension will be submitted to Firefox Add-ons store for one-click permanent installation
+
 
 ### Development Setup
 
