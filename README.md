@@ -4,6 +4,7 @@
 
 A Firefox browser extension that automatically hides YouTube videos marked as "Members only" from your feed, search results, and channel pages.
 
+[Roadmap](https://github.com/users/DU3RI/projects/1)
 <br clear="left"/>
 
 ---
