@@ -60,7 +60,6 @@ A Firefox browser extension that automatically hides YouTube videos marked as "M
 
 2. **Install in Firefox:**
    - Open Firefox and navigate to `about:debugging#/runtime/this-firefox`
-   - Click "This Firefox" in the sidebar
    - Click "Load Temporary Add-on"
    - Navigate to the extracted folder and select the `manifest.json` file
 
