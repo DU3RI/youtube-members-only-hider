@@ -97,16 +97,22 @@
     function processVideos() {
         for (const selector of CONFIG.videoSelectors) {
             const videos = document.querySelectorAll(selector);
-            
             videos.forEach(video => {
                 if (video.dataset.membersOnlyProcessed === 'true') {
                     return; // Already processed
                 }
-
-                if (isMembersOnlyVideo(video)) {
-                    hideVideo(video);
+                // Special handling for sidebar suggestions (ytd-compact-video-renderer)
+                if (selector === 'ytd-compact-video-renderer') {
+                    // Check for badges in the thumbnail or overlay
+                    const badge = video.querySelector('.badge-style-type-members-only, [aria-label*="Members only"], [aria-label*="members only"], [title*="Members only"], [title*="members only"]');
+                    if (badge || isMembersOnlyVideo(video)) {
+                        hideVideo(video);
+                    }
+                } else {
+                    if (isMembersOnlyVideo(video)) {
+                        hideVideo(video);
+                    }
                 }
-
                 video.dataset.membersOnlyProcessed = 'true';
             });
         }
@@ -128,12 +134,15 @@
 
         observer = new MutationObserver((mutations) => {
             let shouldProcess = false;
-            
             mutations.forEach((mutation) => {
                 if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
-                    // Check if any added nodes contain video elements
                     mutation.addedNodes.forEach((node) => {
                         if (node.nodeType === Node.ELEMENT_NODE) {
+                            // Always process if sidebar suggestions are updated
+                            if (node.matches && node.matches('ytd-compact-video-renderer')) {
+                                shouldProcess = true;
+                            }
+                            // Or if any video element is added
                             const hasVideos = CONFIG.videoSelectors.some(selector => 
                                 node.matches && node.matches(selector) || 
                                 node.querySelector && node.querySelector(selector)
@@ -145,9 +154,7 @@
                     });
                 }
             });
-
             if (shouldProcess) {
-                // Debounce processing to avoid excessive calls
                 setTimeout(processVideos, 100);
             }
         });
