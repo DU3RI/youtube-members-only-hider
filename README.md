@@ -52,7 +52,7 @@ A Firefox browser extension that automatically hides YouTube videos marked as "M
 
 **✨ One-click permanent installation:**
 
-[![Get the add-on](https://addons.cdn.mozilla.net/static/img/addons-buttons/AMO-button_1.png)](https://addons.mozilla.org/en-US/firefox/addon/youtube-members-only-hider/)
+[![Get the add-on](images/get-the-addon.webp)](https://addons.mozilla.org/en-US/firefox/addon/youtube-members-only-hider/)
 
 Or visit: [https://addons.mozilla.org/en-US/firefox/addon/youtube-members-only-hider/](https://addons.mozilla.org/en-US/firefox/addon/youtube-members-only-hider/)
 
