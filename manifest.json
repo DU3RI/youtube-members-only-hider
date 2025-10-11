@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "YouTube Members Only Hider",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Hide YouTube videos marked as 'Members only' from your feed and channel pages",
   "author": "DU3RI",
   

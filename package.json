@@ -1,6 +1,6 @@
 {
   "name": "youtube-members-only-hider",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Firefox extension to hide YouTube videos marked as 'Members only'",
   "scripts": {
     "build": "web-ext build --source-dir . --artifacts-dir dist",
