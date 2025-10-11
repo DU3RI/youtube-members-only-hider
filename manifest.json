@@ -5,10 +5,7 @@
   "description": "Hide YouTube videos marked as 'Members only' from your feed and channel pages",
   "author": "DU3RI",
   
-  "permissions": [
-    "*://www.youtube.com/*",
-    "*://youtube.com/*"
-  ],
+  "permissions": [],
   
   "content_scripts": [
     {
@@ -17,7 +14,7 @@
         "*://youtube.com/*"
       ],
       "js": ["content-script.js"],
-      "run_at": "document_start",
+      "run_at": "document_idle",
       "all_frames": false
     }
   ],
