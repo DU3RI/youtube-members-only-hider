@@ -1,4 +1,8 @@
-# YouTube Members Only Hider
+# YouTube Me- [Installation](#installation)
+  - [Official Firefox Add-ons Store (Recommended)](#-official-firefox-add-ons-store-recommended)
+  - [Manual Installation (Easy Method)](#manual-installation-easy-method)
+  - [Manual Installation (Release Package)](#manual-installation-release-package)
+  - [Development Setup](#development-setup) Only Hider
 
 <img src="icons/android-chrome-192x192.png" alt="YouTube Members Only Hider Icon" width="64" height="64" align="left" style="margin-right: 10px;">
 
@@ -48,8 +52,13 @@ A Firefox browser extension that automatically hides YouTube videos marked as "M
 
 ## Installation
 
-**Official Store (Coming Soon):**
-- Extension will be submitted to Firefox Add-ons store for one-click permanent installation
+### 🏪 Official Firefox Add-ons Store (Recommended)
+
+**✨ One-click permanent installation:**
+
+[![Get the add-on](https://addons.cdn.mozilla.net/static/img/addons-buttons/AMO-button_1.png)](https://addons.mozilla.org/en-US/firefox/addon/youtube-members-only-hider/)
+
+Or visit: [https://addons.mozilla.org/en-US/firefox/addon/youtube-members-only-hider/](https://addons.mozilla.org/en-US/firefox/addon/youtube-members-only-hider/)
 
 ### Manual Installation (Easy Method)
 
