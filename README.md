@@ -11,10 +11,9 @@ A Firefox browser extension that automatically hides YouTube videos marked as "M
 - [Screenshots](#screenshots)
 - [Features](#features)
 - [Installation](#installation)
-   - [Official Store (Coming Soon)](#official-store-coming-soon)
-   - [Manual Installation (Easy Method)](#manual-installation-easy-method)
-   - [Manual Installation (Release Package)](#manual-installation-release-package)
-   - [Development Setup](#development-setup)
+  - [Official Firefox Add-ons Store (Recommended)](#official-firefox-add-ons-store-recommended)
+  - [Manual Installation](#manual-installation)
+  - [Development Setup](#development-setup)
 - [Development](#development)
 - [How It Works](#how-it-works)
 - [Debug Functions](#debug-functions)
@@ -48,45 +47,30 @@ A Firefox browser extension that automatically hides YouTube videos marked as "M
 
 ## Installation
 
-### 🏪 Official Firefox Add-ons Store (Recommended)
+### Official Firefox Add-ons Store (Recommended)
 
-**✨ One-click permanent installation:**
+**One-click permanent installation:**
 
 [![Get the add-on](images/get-the-addon.webp)](https://addons.mozilla.org/en-US/firefox/addon/youtube-members-only-hider/)
 
 Or visit: [https://addons.mozilla.org/en-US/firefox/addon/youtube-members-only-hider/](https://addons.mozilla.org/en-US/firefox/addon/youtube-members-only-hider/)
 
-### Manual Installation (Easy Method)
+### Manual Installation
 
-1. **Download the source code:**
-   - Click the green "Code" button on this GitHub page
-   - Select "Download ZIP"
-   - Extract the ZIP file to a folder on your computer
+**Note:** Unsigned extensions can only be installed temporarily in regular Firefox and will be removed when Firefox restarts.
 
-2. **Install in Firefox:**
-   - Open Firefox and navigate to `about:debugging#/runtime/this-firefox`
-   - Click "Load Temporary Add-on"
-   - Navigate to the extracted folder and select the `manifest.json` file
+**For Temporary Installation:**
+1. Download the latest `.xpi` file from the [Releases](../../releases) page, or download the source code ZIP from the green "Code" button
+2. Open Firefox and navigate to `about:debugging#/runtime/this-firefox`
+3. Click "Load Temporary Add-on"
+4. Select the `.xpi` file or the `manifest.json` file from the extracted source
+5. Extension will work until Firefox restart
 
-You will need to repeat this process each time you restart Firefox, as temporary add-ons are not permanent.
-
-### Manual Installation (Release Package)
-
-**Important: Unsigned extensions cannot be permanently installed in regular Firefox. Use one of these methods:**
-
-**Option A - Temporary Installation (Recommended):**
-1. Download the latest release `...xpi` zip file from the [Releases](../../releases) page
-2. Extract the zip file
-3. Open Firefox and navigate to `about:debugging#/runtime/this-firefox`
-4. Click "Load Temporary Add-on"
-5. Select the downloaded `.xpi` file
-6. Extension works until Firefox restart
-
-**Option B - Firefox Developer/Nightly (Permanent):**
+**For Permanent Installation (Developer/Nightly only):**
 1. Install [Firefox Developer Edition](https://www.mozilla.org/firefox/developer/) or [Firefox Nightly](https://nightly.mozilla.org/)
-2. Set `xpinstall.signatures.required` to `false` in `about:config`
-3. Drag the `.xpi` file to Firefox window
-4. Click "Add" when prompted - Extension installs permanently
+2. Navigate to `about:config` and set `xpinstall.signatures.required` to `false`
+3. Drag the `.xpi` file onto the Firefox window
+4. Click "Add" when prompted
 
 
 
