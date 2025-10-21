@@ -38,11 +38,15 @@ A Firefox browser extension that automatically hides YouTube videos marked as "M
 
 ## Features
 
-- 🚫 Hides "Members only" videos from all YouTube pages
-- 🔄 Works with YouTube's dynamic content loading
-- 🌐 Supports multiple languages
-- 🎯 Targets various YouTube layouts (home feed, channel videos, search results)
-- 🛠️ Debug functions available in browser console
+- **Automatic Video Hiding** - Hides "Members only" videos from all YouTube pages
+- **Badge Counter** - Shows the number of hidden videos on the extension icon
+- **Control Popup** - Click the extension icon to access settings and statistics
+- **Pause/Resume** - Temporarily pause the extension without uninstalling
+- **Statistics Management** - View and reset the count of hidden videos
+- **Dynamic Content Support** - Works with YouTube's AJAX loading and page navigation
+- **Multi-Language Support** - Detects membership badges in multiple languages
+- **Comprehensive Detection** - Handles multiple badge types and YouTube's various layouts
+- **Debug Functions** - Developer tools available in browser console
 
 
 ## Installation
