@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>YouTube Members Only Hider</title>
+    <style>
+        body {
+            width: 300px;
+            padding: 15px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            margin: 0;
+            background: #f5f5f5;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        .header h2 {
+            margin: 0 0 5px 0;
+            font-size: 18px;
+            color: #333;
+        }
+        .header p {
+            margin: 0;
+            font-size: 12px;
+            color: #666;
+        }
+        .stats {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .stats-label {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        .stats-value {
+            font-size: 32px;
+            font-weight: bold;
+            color: #FF0000;
+            text-align: center;
+        }
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+        #pauseBtn {
+            background: #4CAF50;
+            color: white;
+        }
+        #pauseBtn:hover {
+            background: #45a049;
+        }
+        #pauseBtn.paused {
+            background: #ff9800;
+        }
+        #pauseBtn.paused:hover {
+            background: #fb8c00;
+        }
+        #resetBtn {
+            background: #f44336;
+            color: white;
+        }
+        #resetBtn:hover {
+            background: #da190b;
+        }
+        .status {
+            text-align: center;
+            padding: 8px;
+            border-radius: 6px;
+            font-size: 13px;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        .status.active {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+        .status.paused {
+            background: #fff3e0;
+            color: #f57c00;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2>YouTube Members Only Hider</h2>
+        <p>Manage your extension settings</p>
+    </div>
+
+    <div id="statusDiv" class="status active">
+        Status: Active
+    </div>
+
+    <div class="stats">
+        <div class="stats-label">Videos Hidden</div>
+        <div class="stats-value" id="hiddenCount">0</div>
+    </div>
+
+    <div class="button-group">
+        <button id="pauseBtn">⏸️ Pause Extension</button>
+        <button id="resetBtn">🔄 Reset Statistics</button>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>
