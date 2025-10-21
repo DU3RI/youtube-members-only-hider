@@ -1,11 +1,20 @@
 {
   "manifest_version": 2,
   "name": "YouTube Members Only Hider",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Hide YouTube videos marked as 'Members only' from your feed and channel pages",
   "author": "DU3RI",
   
   "permissions": [],
+  
+  "browser_action": {
+    "default_icon": {
+      "16": "icons/favicon-16x16.png",
+      "32": "icons/favicon-32x32.png",
+      "48": "icons/favicon-32x32.png"
+    },
+    "default_title": "YouTube Members Only Hider"
+  },
   
   "content_scripts": [
     {

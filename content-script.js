@@ -40,6 +40,7 @@
 
     /**
      * Check if a video element contains members-only indicators
+     * Enhanced to check ALL badges, even when multiple flags are present
      */
     function isMembersOnlyVideo(videoElement) {
         // Check for text content indicating members-only
@@ -57,14 +58,28 @@
             }
         }
 
-        // Check for membership badge icons
-        const membershipBadges = videoElement.querySelectorAll('yt-icon[icon="yt-icons:members_only"], .ytd-badge-supported-renderer');
-        if (membershipBadges.length > 0) {
-            for (const badge of membershipBadges) {
-                if (badge.textContent.toLowerCase().includes('member')) {
-                    return true;
-                }
+        // Check ALL badges on the video (handles multiple flags like Featured + Members Only)
+        const allBadges = videoElement.querySelectorAll(
+            'ytd-badge-supported-renderer, .badge-style-type-members-only, .badge, .yt-badge, yt-icon'
+        );
+        for (const badge of allBadges) {
+            const badgeText = badge.textContent ? badge.textContent.toLowerCase() : '';
+            const badgeLabel = badge.getAttribute('aria-label') ? badge.getAttribute('aria-label').toLowerCase() : '';
+            const badgeTitle = badge.getAttribute('title') ? badge.getAttribute('title').toLowerCase() : '';
+            
+            // Check if any badge contains "members only" or "member"
+            if (badgeText.includes('members only') || 
+                badgeText.includes('member') ||
+                badgeLabel.includes('members only') || 
+                badgeTitle.includes('members only')) {
+                return true;
             }
+        }
+
+        // Check for membership badge icons
+        const membershipBadges = videoElement.querySelectorAll('yt-icon[icon="yt-icons:members_only"]');
+        if (membershipBadges.length > 0) {
+            return true;
         }
 
         // Check for specific YouTube membership indicators
@@ -88,7 +103,25 @@
         videoElement.dataset.membersOnlyHidden = 'true';
         hiddenCount++;
         
+        // Update badge count
+        updateBadgeCount();
+        
         console.log(`[YouTube Members Only Hider] Hidden video #${hiddenCount}:`, videoElement);
+    }
+
+    /**
+     * Update the extension badge with current hidden count
+     */
+    function updateBadgeCount() {
+        if (typeof browser !== 'undefined' && browser.runtime && browser.runtime.sendMessage) {
+            browser.runtime.sendMessage({
+                type: 'updateBadge',
+                count: hiddenCount
+            }).catch(err => {
+                // Silently fail if background script is not available
+                console.debug('[YouTube Members Only Hider] Could not update badge:', err);
+            });
+        }
     }
 
     /**
@@ -172,6 +205,10 @@
      * Handle page navigation in YouTube's SPA
      */
     function handleNavigation() {
+        // Reset count and badge on navigation
+        hiddenCount = 0;
+        updateBadgeCount();
+        
         // Reset processed flags when navigating to new pages
         const processedElements = document.querySelectorAll('[data-members-only-processed="true"]');
         processedElements.forEach(el => {
