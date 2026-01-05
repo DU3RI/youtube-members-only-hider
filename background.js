@@ -5,7 +5,8 @@
 
 // Global state
 let isPaused = false;
-let totalHiddenCount = 0;
+let lifetimeHiddenCount = 0;
+let sessionHiddenCount = 0;
 let tabCounts = {}; // Track count per tab
 
 // Extension installation/update handler
@@ -13,7 +14,12 @@ browser.runtime.onInstalled.addListener((details) => {
     if (details.reason === 'install') {
         console.log('YouTube Members Only Hider installed');
         // Initialize storage
-        browser.storage.local.set({ isPaused: false, totalHiddenCount: 0 });
+        browser.storage.local.set({ 
+            isPaused: false, 
+            lifetimeHiddenCount: 0,
+            sessionHiddenCount: 0,
+            totalHiddenCount: 0 // Legacy compatibility
+        });
     } else if (details.reason === 'update') {
         console.log('YouTube Members Only Hider updated to version', browser.runtime.getManifest().version);
     }
@@ -25,9 +31,19 @@ browser.runtime.onInstalled.addListener((details) => {
 // Load state from storage
 async function loadState() {
     try {
-        const result = await browser.storage.local.get(['isPaused', 'totalHiddenCount']);
+        const result = await browser.storage.local.get([
+            'isPaused',
+            'lifetimeHiddenCount',
+            'sessionHiddenCount',
+            'totalHiddenCount'
+        ]);
         isPaused = result.isPaused || false;
-        totalHiddenCount = result.totalHiddenCount || 0;
+        lifetimeHiddenCount = typeof result.lifetimeHiddenCount === 'number'
+            ? result.lifetimeHiddenCount
+            : (result.totalHiddenCount || 0);
+        sessionHiddenCount = typeof result.sessionHiddenCount === 'number'
+            ? result.sessionHiddenCount
+            : 0;
     } catch (err) {
         console.error('Failed to load state:', err);
     }
@@ -38,7 +54,9 @@ async function saveState() {
     try {
         await browser.storage.local.set({ 
             isPaused: isPaused, 
-            totalHiddenCount: totalHiddenCount 
+            lifetimeHiddenCount: lifetimeHiddenCount,
+            sessionHiddenCount: sessionHiddenCount,
+            totalHiddenCount: lifetimeHiddenCount // Legacy compatibility
         });
     } catch (err) {
         console.error('Failed to save state:', err);
@@ -48,29 +66,39 @@ async function saveState() {
 // Initialize on startup
 loadState();
 
+browser.runtime.onStartup.addListener(() => {
+    sessionHiddenCount = 0;
+    saveState();
+});
+
 // Listen for messages from content script and popup
 browser.runtime.onMessage.addListener((message, sender) => {
     if (message.type === 'updateBadge') {
-        const count = message.count || 0;
+        const tabCount = typeof message.tabCount === 'number'
+            ? message.tabCount
+            : (message.count || 0);
+        const increment = typeof message.increment === 'number' ? message.increment : 0;
         const tabId = sender.tab ? sender.tab.id : null;
         
         if (tabId) {
             // Update tab-specific count
-            tabCounts[tabId] = count;
-            
-            // Update total count
-            totalHiddenCount = count;
-            saveState();
+            tabCounts[tabId] = tabCount;
+
+            if (increment > 0) {
+                sessionHiddenCount += increment;
+                lifetimeHiddenCount += increment;
+                saveState();
+            }
             
             // Always show count on badge (even when 0)
             browser.browserAction.setBadgeText({
-                text: count.toString(),
+                text: tabCount.toString(),
                 tabId: tabId
             });
             
             // Color: Red when active, Gray when paused or 0
             let badgeColor = '#808080';
-            if (!isPaused && count > 0) {
+            if (!isPaused && tabCount > 0) {
                 badgeColor = '#FF0000';
             }
             browser.browserAction.setBadgeBackgroundColor({
@@ -79,10 +107,10 @@ browser.runtime.onMessage.addListener((message, sender) => {
             });
             
             // Update tooltip
-            const videoText = count === 1 ? 'video' : 'videos';
+            const videoText = tabCount === 1 ? 'video' : 'videos';
             const statusText = isPaused ? ' (Paused)' : '';
             browser.browserAction.setTitle({
-                title: `YouTube Members Only Hider - ${count} ${videoText} hidden${statusText}`,
+                title: `YouTube Members Only Hider - ${tabCount} ${videoText} hidden${statusText}`,
                 tabId: tabId
             });
         }
@@ -90,7 +118,9 @@ browser.runtime.onMessage.addListener((message, sender) => {
         // Popup requesting current state
         return Promise.resolve({
             isPaused: isPaused,
-            totalCount: totalHiddenCount
+            lifetimeCount: lifetimeHiddenCount,
+            sessionCount: sessionHiddenCount,
+            totalCount: lifetimeHiddenCount // Legacy field for older popups
         });
     } else if (message.type === 'togglePause') {
         // Toggle pause state
@@ -119,13 +149,23 @@ browser.runtime.onMessage.addListener((message, sender) => {
         
         return Promise.resolve({ isPaused: isPaused });
     } else if (message.type === 'resetStats') {
-        // Reset statistics
-        totalHiddenCount = 0;
+        // Reset statistics (session, lifetime, or both)
+        const scope = message.scope || 'all';
+        const resetSession = scope === 'session' || scope === 'all';
+        const resetLifetime = scope === 'lifetime' || scope === 'all';
+
+        if (resetSession) {
+            sessionHiddenCount = 0;
+        }
+        if (resetLifetime) {
+            lifetimeHiddenCount = 0;
+        }
         saveState();
         
-        // Notify all tabs to reset
+        // Notify all tabs to reset displayed counts
         browser.tabs.query({}).then(tabs => {
             tabs.forEach(tab => {
+                tabCounts[tab.id] = 0;
                 browser.tabs.sendMessage(tab.id, { 
                     type: 'resetStats'
                 }).catch(() => {
@@ -134,7 +174,10 @@ browser.runtime.onMessage.addListener((message, sender) => {
             });
         });
         
-        return Promise.resolve({ totalCount: 0 });
+        return Promise.resolve({ 
+            lifetimeCount: lifetimeHiddenCount,
+            sessionCount: sessionHiddenCount
+        });
     } else if (message.type === 'checkPauseState') {
         // Content script checking if paused
         return Promise.resolve({ isPaused: isPaused });

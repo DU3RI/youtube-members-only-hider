@@ -27,11 +27,16 @@
             font-size: 12px;
             color: #666;
         }
-        .stats {
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+        .stats-card {
             background: white;
             padding: 15px;
             border-radius: 8px;
-            margin-bottom: 15px;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
         .stats-label {
@@ -44,6 +49,16 @@
             font-weight: bold;
             color: #FF0000;
             text-align: center;
+        }
+        .stats-reset {
+            margin-top: 10px;
+            width: 100%;
+            background: #e0e0e0;
+            color: #333;
+            font-size: 13px;
+        }
+        .stats-reset:hover {
+            background: #cfcfcf;
         }
         .button-group {
             display: flex;
@@ -73,13 +88,6 @@
         #pauseBtn.paused:hover {
             background: #fb8c00;
         }
-        #resetBtn {
-            background: #f44336;
-            color: white;
-        }
-        #resetBtn:hover {
-            background: #da190b;
-        }
         .status {
             text-align: center;
             padding: 8px;
@@ -108,14 +116,21 @@
         Status: Active
     </div>
 
-    <div class="stats">
-        <div class="stats-label">Videos Hidden</div>
-        <div class="stats-value" id="hiddenCount">0</div>
+    <div class="stats-grid">
+        <div class="stats-card">
+            <div class="stats-label">Lifetime Hidden Videos</div>
+            <div class="stats-value" id="lifetimeCount">0</div>
+            <button class="stats-reset" id="resetLifetimeBtn">Reset Lifetime</button>
+        </div>
+        <div class="stats-card">
+            <div class="stats-label">Session Hidden Videos</div>
+            <div class="stats-value" id="sessionCount">0</div>
+            <button class="stats-reset" id="resetSessionBtn">Reset Session</button>
+        </div>
     </div>
 
     <div class="button-group">
         <button id="pauseBtn">⏸️ Pause Extension</button>
-        <button id="resetBtn">🔄 Reset Statistics</button>
     </div>
 
     <script src="popup.js"></script>

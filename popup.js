@@ -5,8 +5,10 @@
 
 document.addEventListener('DOMContentLoaded', async () => {
     const pauseBtn = document.getElementById('pauseBtn');
-    const resetBtn = document.getElementById('resetBtn');
-    const hiddenCountEl = document.getElementById('hiddenCount');
+    const lifetimeCountEl = document.getElementById('lifetimeCount');
+    const sessionCountEl = document.getElementById('sessionCount');
+    const resetLifetimeBtn = document.getElementById('resetLifetimeBtn');
+    const resetSessionBtn = document.getElementById('resetSessionBtn');
     const statusDiv = document.getElementById('statusDiv');
 
     // Get current state from background script
@@ -14,8 +16,15 @@ document.addEventListener('DOMContentLoaded', async () => {
         try {
             const response = await browser.runtime.sendMessage({ type: 'getState' });
             
-            // Update hidden count
-            hiddenCountEl.textContent = response.totalCount || 0;
+            const lifetimeCount = typeof response.lifetimeCount === 'number'
+                ? response.lifetimeCount
+                : (response.totalCount || 0);
+            const sessionCount = typeof response.sessionCount === 'number'
+                ? response.sessionCount
+                : 0;
+
+            lifetimeCountEl.textContent = lifetimeCount;
+            sessionCountEl.textContent = sessionCount;
             
             // Update pause button and status
             if (response.isPaused) {
@@ -49,14 +58,26 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
 
-    // Reset statistics button
-    resetBtn.addEventListener('click', async () => {
-        if (confirm('Are you sure you want to reset the statistics?')) {
+    // Reset lifetime statistics
+    resetLifetimeBtn.addEventListener('click', async () => {
+        if (confirm('Reset lifetime statistics?')) {
             try {
-                await browser.runtime.sendMessage({ type: 'resetStats' });
+                await browser.runtime.sendMessage({ type: 'resetStats', scope: 'lifetime' });
                 await updateUI();
             } catch (err) {
-                console.error('Failed to reset stats:', err);
+                console.error('Failed to reset lifetime stats:', err);
+            }
+        }
+    });
+
+    // Reset session statistics
+    resetSessionBtn.addEventListener('click', async () => {
+        if (confirm('Reset session statistics?')) {
+            try {
+                await browser.runtime.sendMessage({ type: 'resetStats', scope: 'session' });
+                await updateUI();
+            } catch (err) {
+                console.error('Failed to reset session stats:', err);
             }
         }
     });
